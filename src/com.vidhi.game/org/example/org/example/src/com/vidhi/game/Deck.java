@@ -1,9 +1,9 @@
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
 
+    private static Deck instance;
     private ArrayList<Card> deck;
 
     /*
@@ -12,7 +12,7 @@ public class Deck {
      * Object.
      */
 
-    public Deck() {
+    private Deck() {
         // creating the deck.
         deck = new ArrayList<>();
         for (Suits suits : Suits.values()) {
@@ -25,6 +25,18 @@ public class Deck {
         // shuffling the deck as well
         Collections.shuffle(deck);
 
+    }
+
+    /*
+     * Singleton pattern to ensure that only one
+     * instance of the Deck object is created.
+     */
+
+    public static Deck getInstance() {
+        if (instance == null) {
+            instance = new Deck();
+        }
+        return instance;
     }
 
     /*
